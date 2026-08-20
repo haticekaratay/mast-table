@@ -1004,15 +1004,19 @@ def MastTable(table, **kwargs):
                     value = (
                         {"value": pending_value}
                         if pending_value not in ("", None)
-                        else {"value": unique_values[0]}
-                        if unique_values
                         else None
                     )
+
+                    def set_pending_select_value(selection):
+                        if selection is None:
+                            set_pending_value("")
+                        else:
+                            set_pending_value(selection["value"])
 
                     Select.element(
                         value=value,
                         items=items,
-                        on_value=set_pending_value,
+                        on_value=set_pending_select_value,
                         label="Value",
                         clearable=False,
                         return_object=True,
