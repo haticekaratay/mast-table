@@ -106,6 +106,8 @@
       :show-select="show_rowselect"
       :single-select="!multiselect"
       :items-per-page="items_per_page"
+      :server-items-length="server_pagination ? server_items_length : -1"
+      :options.sync="table_options"
       v-model="selected_rows"
       class="elevation-2"
       dense
